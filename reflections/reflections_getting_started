@@ -1,0 +1,19 @@
+Reflections on simple_cms lynda tutorial
+
+1. What are the commands you used to get up to this point in your project
+=> rails new simple_cms # to create a new project named simple_cms
+=> rails server # to start localhost server
+
+2. Why is it important to log your reflections
+=> There is research which suggests that logging your reflections on  day to day basis helps you to master the concept really well and learn in a structured manner
+
+3. What are the softwares that you intsalled before starting the project
+=> installed Ruby 
+=> installed RubyGems # also simple gem, is a packagemanager which allows you to install gems like ruby
+=> installed rails 
+=> installed webserver
+=> installed texteditor
+
+4. What is RVM
+=> ruby version manager is a packagemanager which installs different versions of ruby and lets you work on different projects that may not be running on the same version of ruby
+
