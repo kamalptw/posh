@@ -17,3 +17,34 @@ Reflections on simple_cms lynda tutorial
 4. What is RVM
 => ruby version manager is a packagemanager which installs different versions of ruby and lets you work on different projects that may not be running on the same version of ruby
 
+5.How do create a new rails project
+=> rails new app_name -d mysql
+if you don't put -d mysql rails will use default sqlite3 database
+
+6. How do you generate a controller and view
+=>rails generate controller controller_name view_name
+
+7. How is the file structure of rails organized?
+=> in no particular order
+App
+config
+routes.rb
+db
+doc
+gemfile
+lib
+vendor
+log
+Scripts
+test
+Tmp
+Public
+App is where 95% coding will happen.App has Controller, view , model, helpers and mailers
+config contains files like Application.rb, database.yml, boot.rb,environment.rb
+doc contains documentation about app, to do list etc.,
+vendor contains plugins
+log is used for errors and information
+Scripts contains rails 
+Test is used for test code
+Tmp used for temporary files rails will use
+Public contains all files that are listed in the public repository like Images, javascripts, stylesheets. these are all visible to users if they type in the url.
