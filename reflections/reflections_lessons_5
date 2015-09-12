@@ -12,3 +12,58 @@ both work
 
 Again rails uses sensible defaults so in the demo controller ruby file
 for example., def hello render('hello') end #was not even there, it automatically checked the views/demo/hello.html.erb file and rendered it
+
+2. What is the difference between aa render and a redirect? What would you use it for?
+=>render will simply render the page that the browser has requested.
+redirect will redirect the browser and a new request will be executed. 
+redirect will change the url whereas render will not.
+redirect_to(:action=> 'other_hello') will change the url to localhost:3000/demo/other_hello
+We can use this when we need to redirect someone to the login page so that the url correspondingly changes to the login before proceeding page.
+
+3. What do view templates do and how would u use it
+=> view templates have a erb extension and that means that this file will process erb embedded code. And output the file in html
+So I could put <%%> enclosure to my ruby code and <%=%> enclosure to the code that i want to show on my webpage.
+puts and gets doesnt work here as it outputs in the terminal so you can do it this way:
+<% 3.times do %>
+<% = "xxx" %>
+<% end %>
+and the web page will display
+xxx xxx xxx
+
+4. What is an instance variable and how do you use it in Ror?
+=> Instance variable in ruby is a variable that is preceded with an '@' symbol. It denotes that this variable is available to use when an instance of the class(i.e an object) is created. We use it in Ror to provide a glue for View and Controller.
+for example, in our project demo controller is a class and if we declare an array like so in the def method(action)
+def hello
+	@array = [1,2,3,4,5]
+end
+we can use @array in the hello.html.erb file in the View templates like so
+<% @array.each do |n| %>
+<%= n %><br \>
+<% end %>
+It will output like so:
+1
+2
+3
+4
+5
+
+5. How are links implemented in rails?
+=> like <a href = "/demo/index">Index page </a>
+even rails has a special tag structure for implementing links
+its <%= link_to('text','target') %>
+where text is the text you want to display for the link and the target is 
+a hash like
+{:controller => 'demo', :action => 'index'}
+in short as rails knows which controller it is in when it got the request from controller in the first place
+<%= link_to('text',{:action => 'index'}) %> is a valid link
+
+6. How does rails handle url parameters ?
+Simple. it uses :id => '', :page => '', :name => '' to handle the url parameters passed by the web server
+params is a method which handles all GET and POST variables , so in the controller you could have instance variables like
+@id = params[:id]
+@page = params[:page]
+or
+@id = params['id']
+@page = params['page']
+params returns a HashIndifferentAccess that means 'id' and :id both can be passed and it will return the value.
+
