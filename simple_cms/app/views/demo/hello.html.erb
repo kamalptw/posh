@@ -1,0 +1,21 @@
+<h1>Demo#index</h1>
+<p>Find me in app/views/demo/index.html.erb</p>
+<p>Hello World!</p>
+<p>This is kamal </p>
+<br />
+ID : <%= @id %><br />
+PAGE : <%= @page + 1 %><br />
+NAME: <%= @name %><br />
+
+<% target = "World" %>
+<%= "hello #{target}"%>
+<% 3.times do %>
+	<%= "xxx" %>
+	<% end %> <br/>
+<% @array.each do |n| %>
+	<%= n %> <br />
+	<% end %>
+	<%= link_to('go to index',{:action => 'index'}) %>
+
+<hr />
+<%= params.inspect %>
