@@ -1,0 +1,14 @@
+1. What are templates and how do you render them?
+=> in rails 1.0 inside the controller you would have to type in 
+render (:action => 'hello') to render the hello template in demo folder
+in more recent versions it wud be
+render (:template =>'demo/hello') or
+render (:template =>'hello')
+
+in the latest version 3.0 its simply
+render('hello') or
+render('demo/hello')
+both work
+
+Again rails uses sensible defaults so in the demo controller ruby file
+for example., def hello render('hello') end #was not even there, it automatically checked the views/demo/hello.html.erb file and rendered it

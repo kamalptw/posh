@@ -48,3 +48,6 @@ Scripts contains rails
 Test is used for test code
 Tmp used for temporary files rails will use
 Public contains all files that are listed in the public repository like Images, javascripts, stylesheets. these are all visible to users if they type in the url.
+
+8. How does the webserver react to a browser request?
+=> The webserver first checks the public directory and sees if it can get the webpage or asset it wants, if it is not able to, then it goes thru the rails framework and fethces the required webpage and takes it back thru view
