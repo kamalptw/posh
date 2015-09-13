@@ -1,0 +1,65 @@
+1. What are databases?
+=> datatbases are a set of tables
+for a beginner in RoR 1 application = 1 database
+
+2. What are rows ?
+=> rows in Ror are objects for example 
+Kevin is an object with attributes first_name , Last_name , age, sex , salary etc.,
+
+3. What are columns ?
+=> Columns represent attributes like first_name, last_name etc.,
+
+4. What are fields?
+=> The intersection of rows and columns are called fields. 
+It has a single value
+
+5. What is a schema ?
+=> the structural definition of a database is called schema
+
+6. What is a table?
+=> A table is a set of rows and columns.
+In Ror 1 model  = 1 table
+It represents a single concept (noun)
+its all lowercase and plural for example., subjects, users, pages.
+
+7. What is a foreign key?
+=> it is a table column whose values reference rows in another table.
+It is the foundation of relational databases.	
+
+8. What is an index?
+=> Index is a datastructure on a table that will increase look up speed.
+
+9. Create a database, drop a database, and create user?
+create databse like so:
+Create database db_name;
+drop database db_name;
+show databases; # to show databases
+GRANT ALL PRIVILEGES ON db_name.* TO 'username'@'localhost' IDENTIFIED BY 'password'; # to create a user with password and grant him all privileges pertaning to the database
+SHOW GRANTS FOR 'username'@'localhost'; # to show grants for the user
+
+10. How do you configure the project to connect to the database?
+=> You have to go to congig/databases.yml file and in the development: (default environment for ror) change the username from 'root' to the 'username' you just created. 
+you have to input the password in the password field.
+to check if its connceted you could rake db:schema:dump
+and check if there is a schema.rb file created in the config folder.
+
+11. What is RAKE? How would you use it?
+Rake is a simple ruby helper program which is a variation of 'make' in terminal unix CLIs
+Rake helps to accomplish tasks. One of the prominent being:
+rake db:migrate
+rakefile stores a list of all tasks to be performed.
+rake -T to see a list of commands it can perform.
+We can also pass variables like the environment using ALL CAPS and '='
+rake db:schema:dump RAILS_ENV=development
+
+12. What is a databse migration ? why wud u use it?
+=> migration is a set of databse instructions
+Its written in ruby
+I would use db:migrate as migration is useful in the following ways:
+migration is used to move up to a new state or move down back to a previous state
+keeps database schema with application code
+is executable and repeatable # when you move to another computer u just need to run migrations and ur db will be in the same state as the othe computer
+Allows sharing schema changes
+helps with versioning eg., git, subversion etc.,
+Allows writing in ruby instead of sql
+has access to ruby application code # creating a column is very simple
