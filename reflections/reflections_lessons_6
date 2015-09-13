@@ -63,3 +63,34 @@ Allows sharing schema changes
 helps with versioning eg., git, subversion etc.,
 Allows writing in ruby instead of sql
 has access to ruby application code # creating a column is very simple
+
+13. How do you generate a migration?
+=> rails generate migration name_in_camel_case
+these migration ruby files have two methods
+up and down
+
+14. How do you generate a model and what happens along with it?
+=> rails generate model name_in_sentence_case
+when you generate a model, a migration file also gets generated.
+for example., with a model "User", a migration file automatically gets generated called "YYYYMMDDHHMMSS_create_users.rb"
+the default method is def change with code as follows:
+create_table :users do |t|
+	end
+you can use the the variable t to create ur table in this format
+t.type "name", :options 
+ex., t.string "username", :default => "", :null => false
+An "id" column  is created automatically for the table.
+
+15. What is a foreign key and how do you assign it?
+foreign key is a column used to reference rows in another table.
+suppose a subject has many pages, and a page inturn has many sections. Then you can represent this relation in three different tables, connected by a foreign key to give the relationship
+
+ex.,
+in pages table
+t.references :subjects # can also use t.string "subject_id"
+in sections table
+t.references :pages	   # can also use t.string "page_id"
+
+16. How would you index a column? where do you use it?
+=> index make the searching faster . You can use it in places where searching will be done frequently, ideally "foreign key" should be indexed.
+add_index("name_of_table","name_of_column")
