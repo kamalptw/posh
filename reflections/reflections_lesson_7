@@ -1,0 +1,103 @@
+1. What is an activerecord?
+=> ActiveRecord is a commony used design pattern for relational databases.
+ActiveRecord is used to retrieve and maninpulate database data as objects instead of static row.
+ActiveRecord objects are intelligent.
+They can be used to understand the "structure" of db and "know" how to interact with it.
+They contain data but also have the ability to create,read,update and delete rows.
+manipulate and save back to data base.
+ex., user = User.new
+user.first_name = "kevin"
+user.save
+
+2. What is an activerelation?
+=> got introduced in rails 3.0. Also called "Arel"
+An object oriented interpretation of relational algebra, gives user the simple commands to execute complex sql data queries efficiently.
+simplifies generation of complex data queries.
+small queries are chainable(like most ruby objects)
+
+ex.,
+users = User.where(:first_name => "kevin")
+users = users.order("last_name ASC").limit(5)
+users = users.include(:articles_authored)
+
+3. What happens when you generate a model? List out its inheritances?
+=> rails generate model SingleName
+in the db/migrate folder:
+"YYYYMMDDHHMMSS_create_plural_names" ruby file gets created #all smalls
+this ruby file has class "CreatePluralNames" and inherits from ActiveRecord::Migration
+create_table :subjects, drop_table :subjects
+
+in the app/models
+creates a ruby file named "singlename" #all smalls
+the class name is "SingleName" ex., "Subject"
+it inherits from ActiveRecord::Base
+
+It is important to understand that the class name, file name and table names matter.
+
+4. what happens when you rename a table ? how would you follow "convention over configuration"?
+=> rename the model ruby file to "admin_user"
+change the class name to "AdminUser"
+if you follow both the above steps correctly, it will look for a table named "create_admin_users" which matches with the db/migrate/ file name
+
+-or-
+you could just set the table name in the User ruby file as:
+set_table_name("admin_users")
+
+5. What is a rails console?
+=> Rails console is where you can execute complex sql queries with ease and using ruby.
+You can start it by typing rails c or rails console in the root of your project folder
+
+6. how do you create a record/edit a record/delete a record?
+
+First off to create mass assignments you should have attr_accessible :name, :position, :visible
+=>to create there are two methods:
+method 1.
+subject = Subject.new(:name =>"name", :position => integer_value, :visible => true)
+This will not create the record till u use the command subject.save
+You could also check if its saved or not using subject.new_record? 
+method 2.
+subject = Subject.create(:name =>"name", :position => integer_value, :visible => true)
+this will create a record instantly and will return the object itself. Yu can see that the record has been created by looking at the id. it will be updated and so will teh timestamps.
+=> to update a database there are two methods
+method 1:
+subject = Subject.find(1)
+subject.name = "Initial Subject"
+subject.save
+method 2:
+subject = Subject.find(1)
+subject.update_attributes(:name => "Initial Subject")
+=> To delete you should use the destroy command
+subject = Subject.find(1) # first find the record you want to destroy
+subject.destroy
+Also check subject.frozen? # it will return true when you have destroyed it
+
+7. How would you query a database?
+Subject.find(1) # find records with id 1 returned as an object
+Subject.all # all objects in database returned as an array
+Subject.where(:visible => true) # this is now an activerelation query so you can run the .to_sql command on it to see what sql it might execute
+
+8. What are orders, limits and offset?
+to specify order for the query you use:
+Subject.where(:visible => true).order("position ASC")
+to specify limits:
+Subject.where(:visible => true).limit(1) # returns only 1 record
+to specify offset:
+Subject.where(:visible => true).offset(20) # skips 20 records
+
+9. Tips on sql querying?
+Three types :
+Subject.where("visible = true") #prone to sql injection but flexible
+safer is to pass an array
+Subject.where(["visible = ?","true"])
+Another way is to query by hash
+Subject.where(:visible => true)
+
+10. Named scopes?
+In the subject.rb file specify:
+scope :visible, where(:visible => true)
+scope :invisible, where(:visible => false)
+then you can query like this
+subject = Subject.visible
+Lambda expression
+scope :search, lambda {|query| where ["name LIKE ?","%#{query}%"]}
+now Subject.search("Initial") # will give results for where :name is like "Initial" % means any characters preceeding it
