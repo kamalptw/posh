@@ -1,0 +1,30 @@
+1. What are associations ?
+=> Associations are the way one table is in relationship with the other
+for ex., one to one, one to many, many to many.
+
+2. What is a one to one relationship
+=> in the exercise example.,
+one subject has_one page
+one page belongs_to subject
+
+3. What is a one to many relationship?
+=> one subject has_many pages
+one page belongs_to subject
+
+4. What is a many to many simple relationship
+=> In a simple many to many relaionship a join table will have only two foreign keys and no primary key. Also there will be no other attributes, Its just a simple join table
+ex., admin_user has_and_belongs_to_many : pages
+page has_and_belongs_to_many : admin_users
+
+5. What is a many to many rich relationship?
+=> In a rich relationship, A model is created and its corresponding migration is used to create a join table with a primary key, the foreign keys, and any other attributes.
+ex., admin_user has_many section_edits
+SectionEditing belongs_to admin_user
+
+section has_many section_edits
+sectionEditing belongs_to section
+
+6. How to traverse a rich association?
+=> use the through symbol.
+admin_user has_many section_edits
+admin_user has_many sections, :through => section_edits
