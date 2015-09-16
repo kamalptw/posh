@@ -1,0 +1,41 @@
+1. What is CRUD?
+=> CRUD is short for Create,Read,Update and Delete
+
+2. What are the CRUD actions available to us?
+=> Create new # Display a new record form
+Create create # Process a new record form
+Read list # List records
+Read show # Display a single record
+Update edit # Display edit  record form
+Update update # Process edit record fom
+Delete delete # Display delete record form
+Delete destroy # process delete record form
+
+
+3. How should u declare a controller
+=> plural
+
+4. What are the actions you would use in a controller to implement Read functionality?
+=> def list
+	@subjects = Subject.order("subjects.position ASC")
+	end
+	def show
+	@subject = Subject.find(params[:id])
+	end
+	def index
+	list
+	render('list')
+	end
+5. How would you create a form using rails/erb?
+=>
+<%= form_for(:subject, :url => {:action => 'create'}) do |f| %>
+<%= f.text_field(:name) %>
+<%= f.text_field(:position) %>
+<%= f.text_field(:visible) %>
+<%= submit_tag('create subject') %>
+<% end %>
+
+6. What is a flash hash?
+=> Flash hash is used to used to notify in the web browser.
+flash[:notice] = "Subject is created"
+

@@ -28,3 +28,7 @@ sectionEditing belongs_to section
 => use the through symbol.
 admin_user has_many section_edits
 admin_user has_many sections, :through => section_edits
+
+7. How do you name a simple join table?
+=> first_table_name + second_table_name
+all plurals and in alphabetical order

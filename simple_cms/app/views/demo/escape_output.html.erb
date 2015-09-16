@@ -1,0 +1,10 @@
+<% evil_string = "<script>alert('Gotcha!');</script>" %>
+<% good_string = "<strong>Welcome to my site</strong>" %>
+<%= evil_string %><br>
+<%= good_string %><br>
+<% simple_text ='<strong>Please visit</strong> <a href="http://example.com"> us </a>.' %>
+<%= strip_links(simple_text) %><br>
+<%= strip_tags(simple_text) %>
+<hr/>
+<%= sanitize(evil_string) %>
+<%= sanitize(simple_text) %>
