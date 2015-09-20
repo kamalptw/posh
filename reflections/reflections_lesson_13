@@ -1,0 +1,31 @@
+1. What is authentication?
+=> Authentication can be used to encrypt password.
+	protecting attributes during mass assignment
+	Non database attributes
+	callbacks
+	cookies and sessions
+	controller method accessibility
+	before filters
+
+2. Hashing passwords?
+=> passwords can be hashed using MD5, SHA1, SHA2 using algorithms
+
+3. Salting passwords?
+=> Are used to append a unique string into the alredy hashed password.
+require "Digest/sha1"
+def create_hashed_password(username="",password="")
+	unless password.blank?
+	self.salt = AdminUser.hash_salt(username) if salt.blank?
+	self.hashed_password = AdminUser.hash_with_salt(password,salt)
+	end
+end
+
+def hash_salt(username="")
+Digest::SHA1.hexdigest("put #{username} with #{Time.now}")
+end
+
+def hash_with_salt(password="",salt="")
+Digest::SHA1.hexdigest("Put #{salt} on the #{password}")
+end
+
+4.

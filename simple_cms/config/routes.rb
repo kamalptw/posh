@@ -1,5 +1,10 @@
 SimpleCms::Application.routes.draw do
-  root :to => "demo#index"
+
+
+  root :to => "public#index"
+  match 'admin', :to => "access#menu"
+  match 'show/:id', :to => "public#show"
+
   #get "demo/index"
 
   # The priority is based upon order of creation:
